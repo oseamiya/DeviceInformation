@@ -40,6 +40,8 @@ implementation 'com.github.oseamiya:deviceinformation:1.0.0'
 <h3> Download AAR and use it</h3>
 <a href="https://github.com/oseamiya/DeviceInformation/raw/main/assests/DeviceInformation-release.aar">Download Latest Version</a>
 
+-------------------
+
 <b>Usages </b>
 * DeviceInformation
 * DisplayInformation
