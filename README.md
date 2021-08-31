@@ -37,6 +37,8 @@ implementation 'com.github.oseamiya:deviceinformation:1.0.0'
 </dependency>
   
 ````
+<h3> Download AAR and use it</h3>
+<a href="https://github.com/oseamiya/DeviceInformation/raw/main/assests/DeviceInformation-release.aar">Download Latest Version</a>
 
 <b>Usages </b>
 * DeviceInformation
@@ -220,14 +222,15 @@ double latitude = locationInformation.getCurrentLatitude();
 
 ```
 
-| Method                | Description                                           | Return Type | Params               | ParamsType      |
-|-----------------------|-------------------------------------------------------|-------------|----------------------|-----------------|
-| `getCurrentLatitude`  | To get the current latitude of your location          | double      |                      |                 |
-| `getCurrentLongitude` | To get the current longitude of your location         | double      |                      |                 |
-| `getStreetAddress`    | To get the street address from latitude and longitude | String      | latitude , longitude | double , double |
-| `getCity`             | To get the city name from latitude and longitude      | String      | latitude , longitude | double , double |
-| `getCountryName`      | To get the country name from latitude and longitude   | String      | latitude , longitude | double , double |
-| `getPostalCode`       | To get the postal code from latitude and longitude    | String      | latitude , longitude | double , double |
+| Method                      | Description                                           | Return Type | Params               | ParamsType      |
+|-----------------------------|-------------------------------------------------------|-------------|----------------------|-----------------|
+| `getCurrentLatitude`        | To get the current latitude of your location          | double      |                      |                 |
+| `getCurrentLongitude`       | To get the current longitude of your location         | double      |                      |                 |
+| `getStreetAddress`          | To get the street address from latitude and longitude | String      | latitude , longitude | double , double |
+| `getCity`                   | To get the city name from latitude and longitude      | String      | latitude , longitude | double , double |
+| `getCountryName`            | To get the country name from latitude and longitude   | String      | latitude , longitude | double , double |
+| `getPostalCode`             | To get the postal code from latitude and longitude    | String      | latitude , longitude | double , double |
+| `IsLocationServicesEnabled` | To check if location services is enabled or not       | boolean     |                      |                 |
 
 
 <h2> MemoryInformation </h2>
@@ -260,10 +263,13 @@ String ipAddress = networkInformation.getIpAddress(true);
 
 ```
 
-| Method         | Description                               | Return Type | Params  | Params Type |
-|----------------|-------------------------------------------|-------------|---------|-------------|
-| `getIpAddress` | To get the ip-adress of the network       | String      | useIPv4 | boolean     |
-| `getServers`   | To get all the DNS servers within network | String[]    |         |             |
+| Method                  | Description                                | Return Type | Params  | Params Type |
+|-------------------------|--------------------------------------------|-------------|---------|-------------|
+| `getIpAddress`          | To get the ip-adress of the network        | String      | useIPv4 | boolean     |
+| `getServers`            | To get all the DNS servers within network  | String[]    |         |             |
+| `isADBDebuggingEnabled` | To check if ADBDebugging is enabled or not | boolean     |         |             |
+| `isVpnConnection`       | To check if VPN is enabled or not          | boolean     |         |             |
+
 
 
 <h2>SensorInformation</h2>
