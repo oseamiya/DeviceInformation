@@ -6,11 +6,15 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.LinkProperties;
 import android.net.Network;
+import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
 import android.net.RouteInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
+import android.provider.Settings;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -339,6 +343,43 @@ public class NetworkInformation {
         }
         return false;
 
+    }
+    // New methods are added from here
+
+    /**
+     * @return whether adb debugging is enabled or not in boolean
+     */
+    public boolean isADBDebuggingEnabled(){
+        return Settings.Secure.getInt(this.context.getContentResolver(), "adb_enabled" , 0) > 0 ;
+    }
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public boolean isVpnConnection(){
+        return Settings.Secure.getInt(this.context.getContentResolver(), "vpn_state", 0) == 1 || isvpn1() || isvpn2();
+    }
+    private boolean isvpn1() {
+        String iface = "";
+        try {
+            for (NetworkInterface networkInterface : Collections.list(NetworkInterface.getNetworkInterfaces())) {
+                if (networkInterface.isUp())
+                    iface = networkInterface.getName();
+                Log.d("DEBUG", "IFACE NAME: " + iface);
+                if ( iface.contains("tun") || iface.contains("ppp") || iface.contains("pptp")) {
+                    return true;
+                }
+            }
+        } catch (SocketException e1) {
+            e1.printStackTrace();
+        }
+
+        return false;
+    }
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private boolean isvpn2() {
+        ConnectivityManager cm = (ConnectivityManager) this.context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        Network activeNetwork = cm.getActiveNetwork();
+        NetworkCapabilities caps = cm.getNetworkCapabilities(activeNetwork);
+        boolean vpnInUse = caps.hasTransport(NetworkCapabilities.TRANSPORT_VPN);
+        return vpnInUse;
     }
 
 
