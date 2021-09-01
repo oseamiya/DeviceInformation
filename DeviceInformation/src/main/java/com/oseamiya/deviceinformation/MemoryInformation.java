@@ -9,7 +9,7 @@ import java.io.File;
 
 public class MemoryInformation {
     private Context context;
-    public void MemoryInformation(Context context){
+    public  MemoryInformation(Context context){
         this.context = context;
     }
     /**
